@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
+
+<changeSet author="Abdalrahman Albthali" id="1.0">
+        <createTable tableName="users">
+            <column name="username" type="varchar(50)"/>
+            <column name="password" type="varchar(255)"/>
+            <column name="enabled" type="tinyint(1)"/>
+        </createTable>
+        <createTable tableName="authorities">
+            <column name="username" type="varchar(50)"/>
+            <column name="authority" type="varchar(50)"/>
+        </createTable>
+        <addPrimaryKey tableName="users" columnNames="username"/>
+        <addForeignKeyConstraint baseTableName="authorities" baseColumnNames="username" constraintName="fk_authorities_users" referencedTableName="users"
+                                 referencedColumnNames="username"/>
+        <addUniqueConstraint tableName="authorities" columnNames="username, authority"/>
+    </changeSet>
+    <changeSet id="1.1" author="Abdalrahman Albthali">
+        <createTable tableName="books">
+            <column name="id" autoIncrement="true" type="int">
+            <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="author" type="varchar(255)"/>
+            <column name="description" type="varchar(1023)"/>
+            <column name="owner" type="varchar(50)"/>
+            <column name="visibility" type="varchar(8)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="books" baseColumnNames="owner" constraintName="owner_to_username"
+                                 referencedTableName="users"
+                                 referencedColumnNames="username"/>
+        <createIndex tableName="books" indexName="visibility_index">
+            <column name="visibility"/>
+        </createIndex>
+        <sql>ALTER TABLE books ADD CONSTRAINT visibility_constraint CHECK (visibility = 'public' OR visibility = 'private')  </sql>
+    </changeSet>
+
+</databaseChangeLog>

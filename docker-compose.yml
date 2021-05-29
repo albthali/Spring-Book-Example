@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    restart: unless-stopped
+    build: .
+    ports:
+    - "${PORT}:${PORT}"
+    environment:
+      - books.database.host=database
+      - books.database.port
+      - books.database.name
+      - books.database.username
+      - books.database.password
+      - redis.port=6347
+      - redis.host=redis
+      - redis.password
+      - books.http.port
+    depends_on:
+      - database
+      - redis
+  database:
+    image: 'mysql:8.0.25'
+    environment:
+      - MYSQL_ROOT_PASSWORD
+      - MYSQL_DATABASE
+  redis:
+    image: 'bitnami/redis:6.2'
+    environment:
+      - REDIS_PASSWORD
+
+
