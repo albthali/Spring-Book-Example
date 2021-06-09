@@ -1,8 +1,7 @@
 package me.abdalrahman.albthali.books.schema;
 
-import javax.validation.constraints.AssertTrue;
+
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
 public class BookRequest {

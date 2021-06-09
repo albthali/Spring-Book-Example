@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<jsonwebtoken.version>0.11.2</jsonwebtoken.version>
+		<thymeleaf.version>3.0.12.RELEASE</thymeleaf.version>
 	</properties>
 	<dependencies>
 <!--		SPRING-->
@@ -35,8 +36,28 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 
 		<!--		/SPRING-->
+<!--		THYMELEAF-->
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf</artifactId>
+			<version>${thymeleaf.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5 -->
+		<dependency>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring5</artifactId>
+			<version>${thymeleaf.version}</version>
+		</dependency>
+
+
+		<!--		/THYMELEAF-->
 <!--DATABASE-->
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -81,11 +102,11 @@
 		</dependency>
 <!--		/JWT-->
 <!--		JAVAX -->
-		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>2.0.1.Final</version>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>javax.validation</groupId>-->
+<!--			<artifactId>validation-api</artifactId>-->
+<!--			<version>2.0.1.Final</version>-->
+<!--		</dependency>-->
 <!--		/JAVAX-->
 <!--		SPRING TEST-->
 		<dependency>
@@ -99,6 +120,16 @@
 			<scope>test</scope>
 		</dependency>
 <!--		/SPRING TEST-->
+<!--		THE FOLLOWING DEPENDANCIES ARE LICENSED UNDER AGPL, I.E NOT FREE FOR COMMERCIAL USE-->
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/html2pdf -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>html2pdf</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+
+
+		<!--		-->
 
 	</dependencies>
 

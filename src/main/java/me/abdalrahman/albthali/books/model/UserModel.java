@@ -36,7 +36,6 @@ public class UserModel {
             Map<String, Object> userQuery = jdbcTemplate.queryForMap(getUserByUsername, username);
             return new User((String)userQuery.get("username") ,(String)userQuery.get("password"), Collections.emptyList());
         } catch (Exception e ){
-            System.out.println(e);
             throw new UsernameNotFoundException(String.format("Username:%s does not exist",username));
         }
 

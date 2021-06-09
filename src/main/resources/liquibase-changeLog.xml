@@ -41,5 +41,8 @@
         </createIndex>
         <sql>ALTER TABLE books ADD CONSTRAINT visibility_constraint CHECK (visibility = 'public' OR visibility = 'private')  </sql>
     </changeSet>
+    <changeSet id="1.2" author="Abdalrahman Albthali">
+        <sqlFile path="./seed.sql" dbms="mysql" encoding="UTF-8" />
+    </changeSet>
 
 </databaseChangeLog>

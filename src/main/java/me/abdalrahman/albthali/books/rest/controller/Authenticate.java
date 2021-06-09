@@ -2,22 +2,23 @@ package me.abdalrahman.albthali.books.rest.controller;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import me.abdalrahman.albthali.books.entity.JWTEntity;
+import me.abdalrahman.albthali.books.error.HTTPExceptionHandler;
 import me.abdalrahman.albthali.books.repository.JWTRepository;
 import me.abdalrahman.albthali.books.schema.AuthenticateRequest;
 import me.abdalrahman.albthali.books.schema.AuthenticateResponse;
+import me.abdalrahman.albthali.books.schema.PublicKeyResponse;
 import me.abdalrahman.albthali.books.schema.TokenRequest;
 import me.abdalrahman.albthali.books.security.BooksUserDetailsService;
 import me.abdalrahman.albthali.books.security.JWToken;
 import me.abdalrahman.albthali.books.security.utils.JWTUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
@@ -27,6 +28,7 @@ import java.util.Map;
 
 @RestController
 public class Authenticate {
+    private PublicKeyResponse publicKeyResponse;
     @Autowired
     private AuthenticationManager authenticationManager;
     @Autowired
@@ -55,8 +57,7 @@ public class Authenticate {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Malformed token");
         }
         if (!jwToken.isRefresh()){
-
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token is not an access token");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token is not a refresh token");
         }
         if(!jwtUtils.sessionExist(jwToken.getSession())){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logged out token");
@@ -65,6 +66,36 @@ public class Authenticate {
         jwtUtils.removeSession(jwToken.getSession());
         return generateTokens(userDetails);
 
+    }
+    @PostMapping("/auth/logout")
+    public ResponseEntity<?> logout(@RequestBody TokenRequest tokenRequest){
+        String refreshToken = tokenRequest.getRefreshToken();
+        JWToken jwToken = null;
+        try{
+            jwToken =  new JWToken(refreshToken,jwtUtils);
+        } catch (ExpiredJwtException e ){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Expired token",e);
+        }
+        if(!jwToken.verify()){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Malformed token");
+        }
+        if (!jwToken.isRefresh()){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Token is not a refresh token");
+        }
+        if(!jwtUtils.sessionExist(jwToken.getSession())){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Logged out token");
+        }
+        jwtUtils.removeSession(jwToken.getSession());
+        return ResponseEntity.ok().build();
+
+    }
+    @GetMapping("/auth/key")
+    public PublicKeyResponse key(){
+        return getPublicKeyResponse();
+    }
+    private PublicKeyResponse getPublicKeyResponse(){
+        if(publicKeyResponse == null) publicKeyResponse = new PublicKeyResponse(jwtUtils.publicKey);
+        return publicKeyResponse;
     }
     private AuthenticateResponse generateTokens(UserDetails userDetails){
         String session = jwtUtils.generateSession();
@@ -86,6 +117,12 @@ public class Authenticate {
     private void logout(String jwt){
 
 
+    }
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(ResponseStatusException.class)
+    public Map<String, String> handleResponseStatusExceptions(
+            ResponseStatusException ex) {
+        return HTTPExceptionHandler.handleStatusException(ex);
     }
 
 }

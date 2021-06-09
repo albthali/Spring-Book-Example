@@ -49,15 +49,15 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-                http.csrf()
-                        .disable()
-                        .authorizeRequests()
-                .mvcMatchers("/books")
-                .authenticated()
-        .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);;
+//                http.csrf()
+//                        .disable()
+//                        .authorizeRequests()
+//                .mvcMatchers("/user/")
+//                .authenticated()
+//        .and()
+//        .sessionManagement()
+//        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);;
 
 
 

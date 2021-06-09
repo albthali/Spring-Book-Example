@@ -1,5 +1,6 @@
 package me.abdalrahman.albthali.books.entity;
 
+
 import me.abdalrahman.albthali.books.schema.BookRequest;
 
 public class BookEntity {

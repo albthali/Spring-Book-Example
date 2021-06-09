@@ -79,14 +79,21 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request)
             throws ServletException {
-        switch (request.getRequestURI()){
+        String uri = request.getRequestURI();
+        logger.debug("Accesing request:"+uri);
+        switch (uri){
             case "/auth":
-            case "/user":
+            case "/users":
             case "/auth/token":
+            case "/auth/logout":
                 return request.getMethod().equals(HttpMethod.POST.name());
-            default:
-                return false;
+            case "/auth/key":
+                return request.getMethod().equals(HttpMethod.GET.name());
+
         }
+        if(uri.matches("^(/books).*")) return true;
+        return false;
     }
+
 
 }

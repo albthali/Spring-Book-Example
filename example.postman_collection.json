@@ -1,0 +1,428 @@
+{
+	"info": {
+		"_postman_id": "04548284-e01f-44a0-8dcb-ee2bc75412ee",
+		"name": "example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "New User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"user4\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8080/users",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"createdUser\",\r\n    \"password\":\"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\":\"eyJhbGciOiJSUzI1NiJ9.eyJzZXNzaW9uIjoiZTNiMTk5Y2MtNTEyNi00NzI2LTgyMzItNzNhOWJhMzkyMTUwIiwidHlwIjoiUmVmcmVzaCIsInN1YiI6ImNyZWF0ZWRVc2VyIiwiaWF0IjoxNjIyMjkxNTY1LCJleHAiOjE2MjIyOTIxNjV9.hnLMTnnSWraRzd4W0Pq17mKeUqFUMrde3CeyIBkKpfP8HhuFDP8hnh85Ng3-tTAQxeYnOJ6j0k07P_wRTCFlcDqJFoNBuaTjOqt-7X3p8n_bxPgX1v0tZ-gn7Q5SXs8AJi_lakzhTlyFuqUQZB7Veg98u2rVJwSOZUAFogGFQyh6x3pqRUSwUHtV9C6xKnB84KGlxgSb4YkyLbP9F147Y2iG24aMH7uR6BuBGA51eqrBE0ePhNqlNj7JqN5eAn9tZofONQbZfkOHxW6EFyL9X6XVOYbBtfXDQ3Nyraz3MMz_mw1ykj6pi5ZY5Id27Ejj2hVG_hgFLNAP-2GvLKdk5Q\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/token",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\":\"eyJhbGciOiJSUzI1NiJ9.eyJzZXNzaW9uIjoiZDdjMGRiNjctNWNjZS00ODJjLTgwNTQtMjdhMmQ4NTliMjFhIiwidHlwIjoiUmVmcmVzaCIsInN1YiI6InVzZXIzIiwiaWF0IjoxNjIzMDg1NDIyLCJleHAiOjE2MjMwODYwMjJ9.ji8xoGAjeXcV7bNwKvJ_JDL27Nmo65Pm4WvOfPNMc8OjJGh689kMvq5_4KWo1NSL6IDYTmd8Eofp1q0Nkvu3NP1GyMURhg6qIucKTCQPcuaPqHE6A1edGLfwiScZoKXMB6HZE6W6mb1D0-BFVNshwbTrYHBa7Ie5bijJalux8mc0-Rbn2j5JXQO86mHna5jqKIwQLANEahTL4y1HRAvNIxvkRwZgt4864Yg2wZ9mQv57VIqas8wPcJmQe6H9UQUzz8l854shhmH9x-uRTaAW8FqFSOWcycszGpxdTJsGNc5qwdltKUBxXTRVs3q2jRcisXZqRiWBs6Bs0Fes1v5Ltg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/auth/logout",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get key",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/auth/key",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"key"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "books",
+			"item": [
+				{
+					"name": "user",
+					"item": [
+						{
+							"name": "New Book",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The blind assassin\",\r\n    \"author\":\"Margaret Atwood\",\r\n    \"description\":\"More than fifty years on, Iris Chase is remembering Laura's mysterious death. And so begins an extraordinary and compelling story of two sisters and their secrets. Set against a panoramic backdrop of twentieth-century history, The Blind Assassin is an epic tale of memory, intrigue and betrayal...\",\r\n    \"visibility\":\"public\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/users/:username/books",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										":username",
+										"books"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "user1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patch Book Copy",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"visibility\":\"private\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/users/:username/books/:id",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										":username",
+										"books",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "user5"
+										},
+										{
+											"key": "id",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete book",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiJ9.eyJzZXNzaW9uIjoiMzU1NjViOTQtM2MzMS00ZWMyLWI4ZGMtM2QzZDhhYzI2NDA3IiwidHlwIjoiQmVhcmVyIiwic3ViIjoidXNlcjUiLCJpYXQiOjE2MjMyMzY2MzQsImV4cCI6MTYyMzIzNjkzNH0.N7FRZeT3wUMbwuRmdRevyGNj1ESnNRkVSNzSUHbALkTjKS8IMIXiZ_3jZqSp1s0EIGV6DteaZbyPk7Wyc_xcSPcHsj0j2ZaMvGSv8bBi0QE-hTvD-E0Z4jBrl0xqEvTC6Dmkj-Ycm7FIcxGIVX0SHsmBSRYkWJnQ5Hi31NFHwxvUF9WgShSw6VtqLXU8xsiBHMf04YJ-t4y348P6G2Ei3--xs03mb1OcyXcB3v-os4nvbyERfsdTDrXNpxnANW1SUBDx_MQSRPaiO36wILVNlN3x1dcMKhvd0tFW3-CV7gnHs7KWQesVeiH7lM0Ug17jpHf-KrG-q6G5Sczy8w5BUw",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"The Invisible Man\",\r\n    \"author\":\"H. G. Wells\",\r\n    \"description\":\"This book is the story of Griffin, a scientist who creates a serum to render himself invisible, and his descent into madness that follows.\",\r\n    \"visibility\":\"private\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/users/:username/books/:bookid",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										":username",
+										"books",
+										":bookid"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "user5"
+										},
+										{
+											"key": "bookid",
+											"value": "16"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User Books",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\":\"Brave new world\",\r\n    \"author\":\"Aldous Huxley\",\r\n    \"description\":\"Originally published in 1932, this outstanding work of literature is more crucial and relevant today than ever before. Cloning, feel-good drugs, antiaging programs, and total social control through politics, programming, and media -- has Aldous Huxley accurately predicted our future? With a storyteller's genius, he weaves these ethical controversies in a compelling narrative that dawns in the year 632 AF (After Ford, the deity). When Lenina and Bernard visit a savage reservation, we experience how Utopia can destroy humanity. A powerful work of speculative fiction that has enthralled and terrified readers for generations, Brave New World is both a warning to be heeded and thought-provoking yet satisfying entertainment. - Container.\",\r\n    \"visibility\":\"public\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:8080/users/:username/books",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										":username",
+										"books"
+									],
+									"variable": [
+										{
+											"key": "username",
+											"value": "user5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get books",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiJ9.eyJzZXNzaW9uIjoiNGRhNTNhMzUtMjZiYS00YjcwLTlhNGUtM2U2MzcyY2YwYzY2IiwidHlwIjoiQmVhcmVyIiwic3ViIjoiY3JlYXRlZFVzZXIiLCJpYXQiOjE2MjIzMTY3NjQsImV4cCI6MTYyMjMxNzA2NH0.NY37QmnQaCbmbajsc4w4jxjD6ZaCXv0bnkD9TwAV5cJ4ArzGtsz7AVvATYApD7nz7E7_9OfS8GHgesx-kLLVtlrSd2kZyfgWYqZLLwI4erA0Q7T02JniAHz-O0HvIEbm7obAQ1zSoxNn7qf_qGVyxn0wS2kht9VjUilRCvpFep4e6VKEgTLbo2FCnzHwwp5dWTbLCEYaQBKPpZKOoD5vEvKotRj0J6zALkoGuGHRcXEg-q_JCsiel6aSVTUGCbalFSK2tWpZPsfWyxSfS6yepzignd1A2vFT4EjgqrtgycgfBghKZQGjridgJQ7h8NkIUDrBkwvNrim5lhJKWFy5TA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/books?query=",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get books by user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8080/books/users/:username",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"users",
+								":username"
+							],
+							"variable": [
+								{
+									"key": "username",
+									"value": "createdUser"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Books PDF",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8;application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:8080/books/pdf?query=ss",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"books",
+								"pdf"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "ss"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

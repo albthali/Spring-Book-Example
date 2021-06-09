@@ -6,18 +6,22 @@ services:
     ports:
     - "${PORT}:${PORT}"
     environment:
-      - books.database.host=database
-      - books.database.port
-      - books.database.name
-      - books.database.username
-      - books.database.password
-      - redis.port=6347
-      - redis.host=redis
-      - redis.password
-      - books.http.port
+      - books_database_host=database
+      - books_database_port
+      - books_database_name
+      - books_database_username
+      - books_database_password
+      - REDIS_PORT
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD
+      - PORT
     depends_on:
       - database
       - redis
+    volumes:
+    - ./certs/private_key.der:/etc/ssl/certs/private_key.der
+    - ./certs/public_key.der:/etc/ssl/certs/public_key.der
+    - ./certs/book.p12:/etc/ssl/certs/book.p12
   database:
     image: 'mysql:8.0.25'
     environment:
